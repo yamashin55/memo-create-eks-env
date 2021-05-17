@@ -1,6 +1,9 @@
-# memo-create-eks-env
+# memo-create-eks-env 　
+※ EKSの検証環境を構築するメモです。
 
-### 事前インストール
+## 事前インストール
+
+(Windowsで環境作ると大変。後述するWorkstation環境が楽)  
 
 Windows10の場合は以下をインストール
   - [vscode](https://code.visualstudio.com/)
@@ -36,6 +39,42 @@ Windows10の場合は以下をインストール
 
     Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.7", 
     ```
+---
+## EKS 環境作る
 
+1. gitでCloneする
+      ```
+      git clone -b 'v1.1.0' --single-branch https://github.com/f5devcentral/f5-digital-customer-engagement-center
+      ```
+1. ディレクトリ移動
+    ```
+    cd ~/f5-digital-customer-engagement-center/solutions/delivery/application_delivery_controller/nginx/kic/aws
+    ```
+1. admin.auto.tfvarsのコピー
+    ```
+    cp admin.auto.tfvars.example admin.auto.tfvars
+    ```
+1. admin.auto.tfvarsの編集
+    ```
+    adminAccountName = "zadmin"  
+    resourceOwner    = "syamada"  
+    awsRegion        = "us-east-1"  
+    awsAz1           = "us-east-1a"  
+    awsAz2           = "us-east-1f"  
+    sshPublicKey     = "ssh-rsa AAAAB3NzaC1.........."  
+    ```
+1. 環境構築
+    ```
+    ./setup.sh
+    ```
+1. 
+1. 
+1. 
+1. 
+1. 
+1. 
+1. 
+1. 
+1. 
 
 

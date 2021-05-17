@@ -3,8 +3,7 @@
 
 ## 事前インストール
 ※Windowsで作業環境作ると大変  
-※とりあえずTerraformがあれば、下記は飛ばして良い  
-※Terraformで作業環境(Workstation)を作ってくれるからそれを使った方が楽  
+※とりあえずTerraform, AWS CTLがあれば下記は飛ばして良い  
 
 Windows10の場合は以下をインストール
   - [vscode](https://code.visualstudio.com/)
@@ -80,7 +79,7 @@ Windows10の場合は以下をインストール
     - EC2  
     - EIP  
     - EKS Cluster  
-    - ECR Private Repogitry　
+    - ECR Private Registriy
 
 ---
 ### デフォルトから変更する場合のメモ

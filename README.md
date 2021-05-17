@@ -2,8 +2,9 @@
 ※ EKSの検証環境を構築するメモです。
 
 ## 事前インストール
-
-(Windowsで環境作ると大変。後述するWorkstation環境が楽)  
+※Windowsで作業環境作ると大変  
+※とりあえずTerraformがあれば、下記は飛ばして良い  
+※Terraformで作業環境(Workstation)を作ってくれるからそれを使った方が楽  
 
 Windows10の場合は以下をインストール
   - [vscode](https://code.visualstudio.com/)
@@ -67,6 +68,22 @@ Windows10の場合は以下をインストール
     ```
     ./setup.sh
     ```
+    ※作成まで、およそ20分程  
+    ![/setup.sh](./images/1.png)  
+
+    主な作成オブジェクト
+    - VPC  
+    - Subnet  
+    - Route Table  
+    - Internet Gateway  
+    - Security Group  
+    - EC2  
+    - EIP  
+    - EKS Cluster  
+    - ECR Private Repogitry　
+
+---
+### デフォルトから変更する場合のメモ
 1. 
 1. 
 1. 

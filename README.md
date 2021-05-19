@@ -59,7 +59,7 @@ Windows10の場合は以下をインストール
     - awsRegion：リージョン指定
     - awsAz1：アベイラビリティゾーン１指定
     - awsAz2：アベイラビリティゾーン２指定
-    - sshPublicKey：AWS Linux Workstationマシン作成されてそれに紐づけるキーペア（作成しない予定だけど一応記載）
+    - sshPublicKey：Workstationマシン作成されてそれに紐づけるキーペア（作成しない予定だけど一応記載）
     ```
     adminAccountName = "zadmin"  
     resourceOwner    = "syamada"  
@@ -149,7 +149,7 @@ Windows10の場合は以下をインストール
 
 ## **デフォルトから変更する場合のメモ**
 
-### *`variables.tf`*
+#### *`variables.tf`*
 
 - 作成されるオブジェクトのプレフィックス（demo-awsに変更）  
   ```
@@ -167,7 +167,7 @@ Windows10の場合は以下をインストール
   ```
 
 
-### *`main.tf`*
+#### *`main.tf`*
 
 - AZの指定　（awsAz1、awsAz2の行を追加）
   ```
@@ -234,7 +234,7 @@ Windows10の場合は以下をインストール
   ```
 
 
-### *`outputs.tf`*
+#### *`outputs.tf`*
 
 - Linuxワークステーション(jumphost)をコメントアウトするとエラーになるので、アウトプットファイルからもコメントアウト
   ```
@@ -247,7 +247,7 @@ Windows10の場合は以下をインストール
   // }
   ```
 
-### *`~/f5-digital-customer-engagement-center/modules/aws/terraform/network/min/main.tf`*
+#### *`~/f5-digital-customer-engagement-center/modules/aws/terraform/network/min/main.tf`*
 
 - 2つ目のAZを認識するよう「......? var.awsAz**2**」に修正
   ```
@@ -257,7 +257,7 @@ Windows10の場合は以下をインストール
   }
   ```
 
- ### *`~/f5-digital-customer-engagement-center/modules/aws/terraform/network/min/variables.tf`* 
+ #### *`~/f5-digital-customer-engagement-center/modules/aws/terraform/network/min/variables.tf`* 
 - サブネットが既存で利用しているものと被っている場合は変更  
   ※ ワーカノードは **vpcMainSubPubX** 上に作成される)
   ```

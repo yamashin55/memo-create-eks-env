@@ -83,7 +83,44 @@ Windows10の場合は以下をインストール
     - EKS Cluster  
     - ECR Private Registriy
 
+1. ECRをコンテナリポジトリとして利用するために作成されたECRを登録する。
+
+    「us-west-2」と「ecrRepositoryURL」は自分のに合わせて変更する。  
+
+    aws ecr get-login-password --region ***us-west-2*** | docker login --username AWS --password-stdin ***ecrRepositoryURL***  
+
+    ```
+    $ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 673420076654.dkr.ecr.us-east-1.amazonaws.com/demo-cluster-ecr-2372788194
+    ```
+
+1. Kube-configをアップデート
+
+    「us-west-2」と「kubernetesClusterName」は自分のに合わせて変更する。  
+
+    aws eks --region ***us-west-2*** update-kubeconfig --name ***kubernetesClusterName***
+
+    ```
+    aws eks --region us-east-1 update-kubeconfig --name demo-cluster-2372788194
+    ```
+
+1. ELBを利用できるようにパブリックサブネットに2つのタグを配置する
+
+    「publicSubnetAZ1」　「publicSubnetAZ2」　「kubernetesClusterName」は自分のに合わせて変更する。  
+
+    aws ec2 create-tags \
+    --resources ***publicSubnetAZ1*** ***publicSubnetAZ2*** \  
+    --tags Key=kubernetes.io/cluster/***kubernetesClusterName***,Value=shared Key=kubernetes.io/role/elb,Value=1
+
+
+    ```
+    aws ec2 create-tags \
+    --resources subnet-0706ed6f210c9c338 subnet-017d2335b672300bd \
+    --tags Key=kubernetes.io/cluster/demo-cluster-2372788194,Value=shared   Key=kubernetes.io/role/elb,Value=1
+    ```
+
 ---
+
+
 ### デフォルトから変更する場合のメモ
 1. 
 1. 

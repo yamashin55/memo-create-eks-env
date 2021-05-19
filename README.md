@@ -144,6 +144,11 @@ Windows10の場合は以下をインストール
     ip-10-1-10-73.ec2.internal     Ready    <none>   32m   v1.19.6-eks-49a6c0
     ```
 
+1. 環境削除
+
+    ```bash
+    $ ./cleanup.sh
+    ```
 
 ---
 

@@ -55,6 +55,11 @@ Windows10の場合は以下をインストール
     cp admin.auto.tfvars.example admin.auto.tfvars
     ```
 1. admin.auto.tfvarsの編集
+    - resourceOwner：全部じゃないけど作成されるオブジェクトのOwnerタグにつける名前
+    - awsRegion：リージョン指定
+    - awsAz1：アベイラビリティゾーン１指定
+    - awsAz2：アベイラビリティゾーン２指定
+    - sshPublicKey：AWS Linux Workstationマシン作成されてそれに紐づけるキーペア（作成しない予定だけど一応記載）
     ```
     adminAccountName = "zadmin"  
     resourceOwner    = "syamada"  
@@ -78,8 +83,9 @@ Windows10の場合は以下をインストール
     ```
     $ ./setup.sh
     ```
-    ※作成まで、およそ20分程  
-    ※エラーが出たら、   ```terraform init --upgrade```  
+    ※デフォルトの作成オブジェクトの内容を変更する場合は↓で先に編集してからコマンド実行する  
+    ※作成までおよそ20分程  
+    ※エラーが出たら、   ```terraform init --upgrade``` コマンド打つ  
 
     ![/setup.sh](./images/1.png)  
 
@@ -177,7 +183,7 @@ Windows10の場合は以下をインストール
   ```
 
 - K8sのバージョン変更（cluster_version = 1.19に変更）  
-- ワーカノード数(Auto Scalling Group)の変更（asg_min_size=2、asg_desired_capacity=2）  
+- ワーカノード数(Auto Scalling Group)の変更（asg_min_size=2、asg_desired_capacity=2 の行を追加）  
   ※ 作成時にワーカノード2台できる
 
   ```
@@ -207,7 +213,7 @@ Windows10の場合は以下をインストール
   ```
 
 - Linuxワークステーション作成しないように「jumphost」と「module "jumphost」全体をコメントアウト  
-  ※このTerraformだとLinuxマシンが作成されるので、コメントアウトして作成しないようにする
+  ※このTerraformだとLinuxマシン1台が作成されるので、コメントアウトして作成しないようにする
   ```
   // jumphost
   // resource "aws_key_pair" "deployer" {

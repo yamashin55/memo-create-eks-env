@@ -68,8 +68,7 @@ Windows10の場合は以下をインストール
     ./setup.sh
     ```
     ※作成まで、およそ20分程  
-    ※エラーが出たら、  
-    ```terraform init --upgrade```  
+    ※エラーが出たら、   ```terraform init --upgrade```  
 
     ![/setup.sh](./images/1.png)  
 

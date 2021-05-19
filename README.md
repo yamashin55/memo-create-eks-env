@@ -118,6 +118,14 @@ Windows10の場合は以下をインストール
     --tags Key=kubernetes.io/cluster/demo-cluster-2372788194,Value=shared   Key=kubernetes.io/role/elb,Value=1
     ```
 
+1. クラスターの確認
+
+    ```
+    kubectl get node
+    NAME                           STATUS   ROLES    AGE   VERSION
+    ip-10-1-10-73.ec2.internal     Ready    <none>   32m   v1.19.6-eks-49a6c0
+    ```
+
 ---
 
 

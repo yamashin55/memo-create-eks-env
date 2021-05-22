@@ -171,6 +171,13 @@ Windows10の場合は以下をインストール
   }
   ```
 
+- EKS Cluster の名前（my-cluster を変更）
+  ```
+  variable "clusterName" {
+    default     = "my-cluster"
+    description = "eks cluster name"
+  }
+  ```
 
 #### *`main.tf`*
 

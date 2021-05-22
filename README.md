@@ -55,6 +55,9 @@ Windows10の場合は以下をインストール
     cp admin.auto.tfvars.example admin.auto.tfvars
     ```
 1. admin.auto.tfvarsの編集
+    ```
+    vi admin.auto.tfvars
+    ```
     - resourceOwner：全部じゃないけど作成されるオブジェクトのOwnerタグにつける名前
     - awsRegion：リージョン指定
     - awsAz1：アベイラビリティゾーン１指定
@@ -71,17 +74,19 @@ Windows10の場合は以下をインストール
 
 1. AWS CLIを使うためのセットアップ
     ```
-    $ aws configure
-
+    aws configure
+    ```
+    例：
+    ```
     AWS Access Key ID [None]     : AKIAIOSFODNN7EXAMPLE
     AWS Secret Access Key [None] : wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-    Default region name [None]   : us-west-2
+    Default region name [None]   : us-east-1
     Default output format [None] : json
     ```
 
 1. 環境構築
     ```
-    $ ./setup.sh
+    ./setup.sh
     ```
     ※デフォルトの作成オブジェクトの内容を変更する場合は↓「[デフォルトから変更する場合のメモ](##デフォルトから変更する場合のメモ)」で先に編集してからコマンド実行する  
     ※作成までおよそ20分程  
@@ -99,46 +104,45 @@ Windows10の場合は以下をインストール
     - EIP  
     - EKS Cluster  
     - ECR Private Registriy
+    - Auto Scaling Group
 
 1. ECRをコンテナリポジトリとして利用するために作成されたECRを登録する。
 
-    「us-west-2」と「ecrRepositoryURL」は自分のに合わせて変更する。  
+    「us-west-2」と「ecrRepositoryURL」は環境に合わせて変更する。  
 
-    aws ecr get-login-password --region ***us-west-2*** | docker login --username AWS --password-stdin ***ecrRepositoryURL***  
+    $ aws ecr get-login-password --region ***us-east-1*** | docker login --username AWS --password-stdin ***ecrRepositoryURL***  
 
     ```
-    $ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 673420076654.dkr.ecr.us-east-1.amazonaws.com/demo-cluster-ecr-2372788194
+    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 673420076654.dkr.ecr.us-east-1.amazonaws.com/demo-cluster-ecr-2372788194
     ```
 
 1. Kube-configをアップデート
 
-    「us-west-2」と「kubernetesClusterName」は自分のに合わせて変更する。  
+    「us-west-2」と「kubernetesClusterName」は環境に合わせて変更する。  
 
-    aws eks --region ***us-west-2*** update-kubeconfig --name ***kubernetesClusterName***
+    $ aws eks --region ***us-east-1*** update-kubeconfig --name ***kubernetesClusterName***
 
     ```
-    $ aws eks --region us-east-1 update-kubeconfig --name demo-cluster-2372788194
+    aws eks --region us-east-1 update-kubeconfig --name demo-cluster-2372788194
     ```
 
 1. ELBを利用できるようにパブリックサブネットに2つのタグを配置する
 
     「publicSubnetAZ1」　「publicSubnetAZ2」　「kubernetesClusterName」は自分のに合わせて変更する。  
 
-    aws ec2 create-tags \
+    $ aws ec2 create-tags \
     --resources ***publicSubnetAZ1*** ***publicSubnetAZ2*** \  
     --tags Key=kubernetes.io/cluster/***kubernetesClusterName***,Value=shared Key=kubernetes.io/role/elb,Value=1
 
 
     ```
-    $ aws ec2 create-tags \
-    --resources subnet-0706ed6f210c9c338 subnet-017d2335b672300bd \
-    --tags Key=kubernetes.io/cluster/demo-cluster-2372788194,Value=shared   Key=kubernetes.io/role/elb,Value=1
+    aws ec2 create-tags --resources subnet-0706ed6f210c9c338 subnet-017d2335b672300bd --tags Key=kubernetes.io/cluster/demo-cluster-2372788194,Value=shared   Key=kubernetes.io/role/elb,Value=1
     ```
 
 1. クラスターの確認
 
     ```
-    $ kubectl get node
+    kubectl get node
 
     NAME                           STATUS   ROLES    AGE   VERSION
     ip-10-1-10-73.ec2.internal     Ready    <none>   32m   v1.19.6-eks-49a6c0
@@ -147,7 +151,7 @@ Windows10の場合は以下をインストール
 1. 環境削除
 
     ```bash
-    $ ./cleanup.sh
+    ./cleanup.sh
     ```
 
 ---

@@ -144,8 +144,9 @@ Windows10の場合は以下をインストール
     ```
     kubectl get node
 
-    NAME                           STATUS   ROLES    AGE   VERSION
-    ip-10-1-10-73.ec2.internal     Ready    <none>   32m   v1.19.6-eks-49a6c0
+    NAME                           STATUS   ROLES    AGE     VERSION
+    ip-10-1-10-70.ec2.internal     Ready    <none>   7h19m   v1.19.6-eks-49a6c0
+    ip-10-1-110-249.ec2.internal   Ready    <none>   7h19m   v1.19.6-eks-49a6c0
     ```
 
 1. 環境削除

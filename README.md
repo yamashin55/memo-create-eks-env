@@ -1,6 +1,9 @@
 # memo-create-eks-env 　
 ※ EKSの検証環境を構築するメモです。
 
+※ 環境イメージ図
+![構成](./images/2.jpg)  
+
 ## 事前インストール
 ※Windowsで作業環境作ると大変  
 ※作業用のWorkstation環境を一時的に作る場合は[ここから](https://github.com/yamashin55/aws-workstation)作成できる  

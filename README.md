@@ -165,6 +165,7 @@ Windows10の場合は以下をインストール
 #### *`variables.tf`*
 
 - 作成されるオブジェクトのプレフィックス（demo-awsに変更）  
+  これ変更してもすべてのオブジェクトのプレフィックスが変更されるわけではない。
   ```
   # cloud
   variable "projectPrefix" {
@@ -172,7 +173,7 @@ Windows10の場合は以下をインストール
   }
   ```
 
-- 作成するリージョンを指定（us-east-1に変更）
+- ワーカノードを作成するリージョンを指定（us-east-1に変更）
   ```
   variable "awsRegion" {
     default = "us-east-1"

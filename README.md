@@ -81,8 +81,8 @@ Windows10の場合は以下をインストール
     ```
     例：
     ```
-    AWS Access Key ID [None]     : AKIAIOSFODNN7EXAMPLE
-    AWS Secret Access Key [None] : wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    AWS Access Key ID [None]     : AKIXXXXXX.......
+    AWS Secret Access Key [None] : wJalXXXXXXXXXXXXX.........
     Default region name [None]   : us-east-1
     Default output format [None] : json
     ```
